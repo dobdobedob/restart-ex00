@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="org.zerock.domain.project1.BoardMapper">
+<mapper namespace="org.zerock.mapper.project1.BoardMapper">
 
 	<select id="getList" resultType="org.zerock.domain.project1.BoardVO">
 	SELECT
@@ -37,7 +37,7 @@
 	INSERT INTO
 		Board (title, content, writer)
 	VALUES
-		(#{title,} #{content}, #{writer})
+		(#{title}, #{content}, #{writer})
 	</insert>
 	
 	<update id="update">

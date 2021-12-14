@@ -12,7 +12,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>Insert title here</title>
+<title>게시물 작성 페이지</title>
+<style>
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -33,8 +38,10 @@
           </div>
           <div class="form-group">
             <label for="input3">작성자</label>
-            <input type="text" class="form-control" id="input3" name="writer">
+            <input type="text" class="form-control" id="input3" readonly value="${sessionScope.loggedInMember.nickName }">
           </div>
+          
+          <input type="hidden" name="writer" value="${sessionScope.loggedInMember.id }">
 
           <button class="btn btn-outline-primary" type="submit">등록</button>
         </form>

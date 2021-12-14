@@ -12,7 +12,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>Insert title here</title>
+<title>게시물 목록 페이지</title>
+<style>
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -41,7 +46,7 @@
                 <td>
                   <a href="get?id=${board.id }"> ${board.title } </a>
                 </td>
-                <td>${board.writer }</td>
+                <td>${board.nickName }</td>
                 <td>${board.inserted }</td>
               </tr>
             </c:forEach>

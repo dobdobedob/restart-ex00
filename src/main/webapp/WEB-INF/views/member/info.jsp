@@ -12,7 +12,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>Insert title here</title>
+<title>회원정보 페이지</title>
+<style>
+	h1 {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -32,12 +37,16 @@
             <input type="text" required id="input2" class="form-control" name="password" value="${sessionScope.loggedInMember.password }">
           </div>
           <div class="form-group">
-            <label for="input3">이메일</label>
-            <input type="email" required id="input3" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+            <label for="input3">닉네임</label>
+            <input type="text" required id="input3" class="form-control" name="nickname" value="${sessionScope.loggedInMember.nickName }">
           </div>
           <div class="form-group">
-            <label for="input4">주소</label>
-            <input type="text" required id="input4" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
+            <label for="input4">이메일</label>
+            <input type="email" required id="input4" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+          </div>
+          <div class="form-group">
+            <label for="input5">주소</label>
+            <input type="text" required id="input5" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
           </div>
           <!-- button.btn.btn-outline-secondary{수정}+button.btn.btn-outline-danger{삭제} -->
           <button class="btn btn-outline-secondary" id="modifyButton">수정</button>

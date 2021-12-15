@@ -12,12 +12,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>회원 목록 페이지</title>
-<style>
-	h1 {
-		text-align: center;
-	}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -38,17 +33,19 @@
               <th>이메일</th>
               <th>주소</th>
               <th>가입일시</th>
+              <th><i class="far fa-sticky-note"></i></th>
             </tr>
           </thead>
           <tbody>
             <c:forEach items="${memberList }" var="member">
               <tr>
                 <td>${member.id }</td>
-                <td>${member.password }</td>
-                <td>${member.nickName }</td>
-                <td>${member.email }</td>
-                <td>${member.address }</td>
+                <td><c:out value="${member.password }"/></td>
+                <td><c:out value="${member.nickName }"/></td>
+                <td><c:out value="${member.email }"/></td>
+                <td><c:out value="${member.address }"/></td>
                 <td>${member.inserted }</td>
+                <td>${member.numberOfBoard }</td>
               </tr>
             </c:forEach>
           </tbody>

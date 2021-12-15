@@ -12,12 +12,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>회원정보 페이지</title>
-<style>
-	h1 {
-		text-align: center;
-	}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -34,19 +29,23 @@
           </div>
           <div class="form-group">
             <label for="input2">패스워드</label>
-            <input type="text" required id="input2" class="form-control" name="password" value="${sessionScope.loggedInMember.password }">
+            <input type="password" required id="input2" class="form-control" name="password" value="${sessionScope.loggedInMember.password }">
           </div>
           <div class="form-group">
-            <label for="input3">닉네임</label>
-            <input type="text" required id="input3" class="form-control" name="nickname" value="${sessionScope.loggedInMember.nickName }">
+            <label for="input6">패스워드 확인</label>
+            <input type="password" required id="input6" class="form-control">
           </div>
           <div class="form-group">
-            <label for="input4">이메일</label>
-            <input type="email" required id="input4" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+            <label for="input5">닉네임</label>
+            <input type="text" required id="input5" class="form-control" name="nickName" value="${sessionScope.loggedInMember.nickName }">
           </div>
           <div class="form-group">
-            <label for="input5">주소</label>
-            <input type="text" required id="input5" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
+            <label for="input3">이메일</label>
+            <input type="email" required id="input3" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
+          </div>
+          <div class="form-group">
+            <label for="input4">주소</label>
+            <input type="text" required id="input4" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
           </div>
           <!-- button.btn.btn-outline-secondary{수정}+button.btn.btn-outline-danger{삭제} -->
           <button class="btn btn-outline-secondary" id="modifyButton">수정</button>
@@ -62,21 +61,43 @@
 
   <script>
       $(document).ready(function() {
+        // 수정버튼 또는 삭제버튼 클릭 시 form의 action 속성값 변경
         const infoForm = $("#infoForm");
+        const modifyButton = $("#modifyButton");
+        const removeButton = $("#removeButton");
 
-        $("#modifyButton").click(function(e) {
+        modifyButton.click(function(e) {
           e.preventDefault();
           infoForm.attr("action", "");
           infoForm.submit();
         });
 
-        $("#removeButton").click(function(e) {
+        removeButton.click(function(e) {
           e.preventDefault();
           if (confirm("탈퇴하시겠습니까?")) {
             infoForm.attr("action", "remove");
             infoForm.submit();
           }
-        })
+        });
+
+        // 패스워드, 패스워드확인 인풋요소 값 일치할 때만 수정버튼 활성화
+        const passwordInput = $("#input2");
+        const passwordConfirmInput = $("#input6");
+        const confirmFunction = function() {
+          const passwordValue = passwordInput.val();
+          const passwordConfirmValue = passwordConfirmInput.val();
+
+          if (passwordValue === passwordConfirmValue) {
+            modifyButton.removeAttr("disabled");
+          } else {
+            modifyButton.attr("disabled", true);
+          }
+        }
+
+        modifyButton.attr("disabled", true); // 수정 버튼 비활성화
+
+        passwordInput.keyup(confirmFunction);
+        passwordConfirmInput.keyup(confirmFunction);
       });
     </script>
 

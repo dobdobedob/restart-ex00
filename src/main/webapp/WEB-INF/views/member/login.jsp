@@ -13,12 +13,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>로그인 페이지</title>
-<style>
-	h1 {
-		text-align: center;
-	}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
 <b:navBar></b:navBar>
@@ -35,7 +30,7 @@
             	</div>
             	<div class="form-group">
             		<label for="input2">패스워드</label>
-            		<input type="text" class="form-control" name="password" required="">
+            		<input type="password" class="form-control" name="password" required="">
             	</div>
             	<button class="btn btn-outline-primary">로그인</button>
             </form>

@@ -43,7 +43,7 @@
             <input type="text" class="form-control" id="input3" value="${board.nickName }" readonly>
           </div>
           
-           <input type="hidden" name="writer" value="${board.writer }">
+          <input type="hidden" name="writer" value="${board.writer }">
 
           <button id="modifySubmitButton" class="btn btn-outline-primary" type="submit">수정</button>
           <!-- button.btn.btn-outline-danger{삭제} -->

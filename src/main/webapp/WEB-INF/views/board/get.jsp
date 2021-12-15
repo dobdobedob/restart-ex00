@@ -44,6 +44,7 @@
           </div>
 
           <!-- a.btn.btn-outline-secondary>i.far.fa-edit -->
+          
           <c:if test="${sessionScope.loggedInMember.id eq board.writer }">
             <a href="modify?id=${board.id }" class="btn btn-outline-secondary">
               수정/삭제

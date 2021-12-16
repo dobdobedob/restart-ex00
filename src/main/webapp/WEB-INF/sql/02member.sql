@@ -42,8 +42,17 @@ ORDER BY id DESC;
 SELECT m.id, m.password, m.email, m.address, m.inserted, m.nickName, COUNT(b.id)
 FROM Member m LEFT JOIN Board b ON m.id = b.writer
 GROUP BY m.id
-ORDER BY m.inserted DESC;
-
+ORDER BY m.inserted DESC
+LIMIT 0, 10 
+;
+	-- from (0-index), number
+    -- page 1 : 0, 10
+    -- page 2 : 10, 10
+    -- page 3 : 20, 10
+    -- page 4 : 30, 10
+    -- page 5 : 40, 10
+    -- page 6 : 50, 10
+    
 
 
 

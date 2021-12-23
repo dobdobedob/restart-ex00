@@ -1,24 +1,90 @@
-package org.zerock.mapper.project1;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.zerock.domain.project1.MemberVO;
-
-public interface MemberMapper {
-
-	public int insert(MemberVO member);
+<mapper namespace="org.zerock.mapper.project1.MemberMapper">
+	<insert id="insert">
+	INSERT INTO Member (id, password, email, address, nickName)
+	VALUES (#{id}, #{password}, #{email}, #{address}, #{nickName})
+	</insert>
 	
-	public MemberVO select(String id);
+	<select id="selectByNickName" resultType="org.zerock.domain.project1.MemberVO">
+	SELECT id, password, email, address, inserted, nickName
+	FROM Member
+	WHERE nickName = #{nickName}
+	</select>
 	
-	public int update(MemberVO member);
+	<select id="select" resultType="org.zerock.domain.project1.MemberVO">
+	SELECT id, password, email, address, inserted, nickName
+	FROM Member
+	WHERE id = #{id}
+	</select>
 	
-	public int delete(String id);
+	<update id="update">
+	UPDATE Member
+	SET password = #{password},
+		email = #{email},
+		address = #{address},
+		nickName = #{nickName}
+	WHERE
+		id = #{id}
+	</update>
 	
-	public List<MemberVO> list(); //
+	<delete id="delete">
+	DELETE FROM Member
+	WHERE id = #{id}
+	</delete>
+	
+	<select id="list" resultType="org.zerock.domain.project1.MemberVO">
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+	</select>
+	
+	<select id="listPage" resultType="org.zerock.domain.project1.MemberVO">
+SELECT 
+    m.id,
+    m.password,
+    m.email,
+    m.address,
+    m.inserted,
+    m.nickName,
+    COUNT(b.id) AS numberOfBoard
+FROM
+    Member m
+        LEFT JOIN
+    Board b ON m.id = b.writer
+GROUP BY m.id
+ORDER BY m.inserted DESC
+LIMIT #{from}, #{items}
+	</select>
+	
+	<select id="getCountRows" resultType="int">
+	SELECT COUNT(*) FROM Member
+	</select>
 
-	public List<MemberVO> listPage(@Param("from") Integer from, @Param("items") Integer numberPerPage); // page 처리
+</mapper>
 
-	public Integer getCountRows();
 
-}
+
+
+
+
+
+
+
+
+
+

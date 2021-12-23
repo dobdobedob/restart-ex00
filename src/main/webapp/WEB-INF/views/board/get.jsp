@@ -11,13 +11,39 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<title>게시물 조회 페이지</title>
-<style>
-	h1 {
-		text-align: center;
-	}
-</style>
+<script>
+  $(document).ready(function() {
+    /* contextPath */
+    const appRoot = '${pageContext.request.contextPath}';
+
+    /* 현재 게시물의 댓글 목록 가져오기 */
+    $.ajax({
+      url : appRoot + "/reply/board/${board.id}",
+      success : function(list) {
+		
+        for (let i = 0; i < list.length; i++) {
+          const replyMediaObject = `
+          		<hr>
+                <div class="media">
+                <div class="media-body">
+                  <h5 class="mt-0"><i class="far fa-comment"></i> \${list[i].memberId}가 \${list[i].inserted}에 작성</h5>
+                  <p>\${list[i].reply}</p>
+                </div>
+              </div>`
+          
+          
+          $("#replyListContainer").append(replyMediaObject);
+        }
+        
+        
+      }
+    });
+  });
+</script>
+
+<title>Insert title here</title>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -44,11 +70,11 @@
           </div>
 
           <!-- a.btn.btn-outline-secondary>i.far.fa-edit -->
-          
+
           <c:if test="${sessionScope.loggedInMember.id eq board.writer }">
             <a href="modify?id=${board.id }" class="btn btn-outline-secondary">
               수정/삭제
-            	<!-- <i class="far fa-edit"></i> -->
+              <!-- <i class="far fa-edit"></i> -->
             </a>
           </c:if>
         </div>
@@ -56,8 +82,20 @@
     </div>
   </div>
 
+  <!-- 댓글 container -->
+  <hr>
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+
+        <div id="replyListContainer"></div>
+
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>

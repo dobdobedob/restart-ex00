@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="b" tagdir="/WEB-INF/tags/board"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,100 +9,133 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <title>Insert title here</title>
+
+<script>
+const appRoot = '${pageContext.request.contextPath}';
+
+$(document).ready(function() {
+  $("#btn01").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met02"
+    });
+  });
+  
+  $("#btn02").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met03"
+    });
+  });
+  
+  $("#btn03").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met04"
+    });
+  });
+  
+  $("#btn04").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/metaa",
+      error : function() {
+        console.log("/cont13/metaa 요청 실패!");
+      }
+    });
+  });
+  
+  $("#btn05").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/metbb",
+      error : function() {
+        alert("/cont13/metbb 요청 실패!");
+      }
+    });
+  });
+  
+  $("#btn06").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met05",
+      success : function() {
+        console.log("요청 성공");
+      }
+    });
+  });
+  
+  $("#btn07").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met06",
+      success : function(data) {
+        console.log(data);
+      }
+    });
+  });
+  
+  $("#btn08").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met07",
+      success : function(data) {
+        $("#result08").html(data);
+      }
+    });
+  });
+  
+  $("#btn09").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met08",
+      complete : function() {
+        console.log("요청 끝남");
+      }
+    })
+  });
+  
+  $("#btn10").click(function() {
+    $.ajax({
+      url : appRoot + "/cont13/met09",
+      success : function() {
+		console.log("요청 성공");
+      },
+      error : function() {
+        console.log("요청 실패");
+      },
+      complete : function() {
+        console.log("요청 완료");
+      }
+    });
+  });
+  
+});
+</script>
 </head>
 <body>
-  <b:navBar></b:navBar>
-  <!-- .container>.row>.col>h1{회원정보} -->
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h1>회원정보</h1>
-        <!-- form>.form-group*4>label[for=input$]+input.form-control[name][value] -->
-        <form method="post" id="infoForm">
-          <div class="form-group">
-            <label for="input1">아이디</label>
-            <input type="text" required id="input1" class="form-control" name="id" value="${sessionScope.loggedInMember.id }" readonly>
-          </div>
-          <div class="form-group">
-            <label for="input2">패스워드</label>
-            <input type="password" required id="input2" class="form-control" name="password" value="${sessionScope.loggedInMember.password }">
-          </div>
-          <div class="form-group">
-            <label for="input6">패스워드 확인</label>
-            <input type="password" required id="input6" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="input5">닉네임</label>
-            <input type="text" required id="input5" class="form-control" name="nickName" value="${sessionScope.loggedInMember.nickName }">
-          </div>
-          <div class="form-group">
-            <label for="input3">이메일</label>
-            <input type="email" required id="input3" class="form-control" name="email" value="${sessionScope.loggedInMember.email }">
-          </div>
-          <div class="form-group">
-            <label for="input4">주소</label>
-            <input type="text" required id="input4" class="form-control" name="address" value="${sessionScope.loggedInMember.address }">
-          </div>
-          <!-- button.btn.btn-outline-secondary{수정}+button.btn.btn-outline-danger{삭제} -->
-          <button class="btn btn-outline-secondary" id="modifyButton">수정</button>
-          <button class="btn btn-outline-danger" id="removeButton">삭제</button>
-        </form>
-      </div>
-    </div>
-  </div>
+<button id="btn01">/cont13/met02</button> <br>
+<button id="btn02">/cont13/met03 응답있음 jsp 페이지 전체</button> <br>
+<button id="btn03">/cont13/met04 응답있음 단순 데이터</button> <br>
+<button id="btn04">/cont13/metaa 존재하지 않는 경로</button> <br>
+<button id="btn05">/cont13/metbb 존재하지 않는 경로 요청 보냈을 때 alert("요청 실패")</button> <br>
+<button id="btn06">/cont13/met05 요청성공시 log</button> <br>
+<button id="btn07">/cont13/met06 응답받은 데이터 콘솔에 출력</button> <br>
+<button id="btn08">/cont13/met07 응답받은 데이터(1~10 랜덤값)를 #resut08 요소에 content로 작성</button> <br>
+<p id="result08"></p>
+<button id="btn09">/cont13/met08 요청완료시 complete 실행</button> <br>
+<button id="btn10">/cont13/met09 요청완료시 success/error AND complete 실행</button>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
-  <script>
-      $(document).ready(function() {
-        // 수정버튼 또는 삭제버튼 클릭 시 form의 action 속성값 변경
-        const infoForm = $("#infoForm");
-        const modifyButton = $("#modifyButton");
-        const removeButton = $("#removeButton");
-
-        modifyButton.click(function(e) {
-          e.preventDefault();
-          infoForm.attr("action", "");
-          infoForm.submit();
-        });
-
-        removeButton.click(function(e) {
-          e.preventDefault();
-          if (confirm("탈퇴하시겠습니까?")) {
-            infoForm.attr("action", "remove");
-            infoForm.submit();
-          }
-        });
-
-        // 패스워드, 패스워드확인 인풋요소 값 일치할 때만 수정버튼 활성화
-        const passwordInput = $("#input2");
-        const passwordConfirmInput = $("#input6");
-        const confirmFunction = function() {
-          const passwordValue = passwordInput.val();
-          const passwordConfirmValue = passwordConfirmInput.val();
-
-          if (passwordValue === passwordConfirmValue) {
-            modifyButton.removeAttr("disabled");
-          } else {
-            modifyButton.attr("disabled", true);
-          }
-        }
-
-        modifyButton.attr("disabled", true); // 수정 버튼 비활성화
-
-        passwordInput.keyup(confirmFunction);
-        passwordConfirmInput.keyup(confirmFunction);
-      });
-    </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 

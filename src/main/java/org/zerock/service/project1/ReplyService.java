@@ -19,4 +19,32 @@ public class ReplyService {
 		
 		return mapper.list(boardId);
 	}
+
+	public boolean insert(ReplyVO reply) {
+
+		return mapper.insert(reply) == 1;
+	}
+
+	public ReplyVO readById(Integer id) {
+		return mapper.selectById(id);
+	}
+
+	public boolean update(ReplyVO newReply) {
+
+		return mapper.update(newReply) == 1;
+	}
+
+	public boolean delete(Integer id) {
+		return mapper.delete(id) == 1;
+	}
 }
+
+
+
+
+
+
+
+
+
+

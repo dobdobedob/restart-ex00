@@ -12,12 +12,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resource/css/icon/css/all.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-<title>게시물 작성 페이지</title>
-<style>
-	h1 {
-		text-align: center;
-	}
-</style>
+<title>Insert title here</title>
 </head>
 <body>
   <b:navBar></b:navBar>
@@ -37,10 +32,10 @@
             <textarea class="form-control" id="input2" name="content"></textarea>
           </div>
           
-          <!-- .form-group>label[for=input4]+input[type=file].form-control-file#intup4[name=files] -->
+          <!-- .form-group>label[for=input4]+input[type=file].form-control-file#input4[name=files] -->
           <div class="form-group">
           	<label for="input4">이미지 파일</label>
-          	<input type="file" class="form-control-file" id="intup4" name="files" accept="image/*" multiple>
+          	<input type="file" class="form-control-file" id="input4" name="files" accept="image/*" multiple>
           </div>
           
           <div class="form-group">
